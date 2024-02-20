@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/openjdk:8
 
-    working_directory: ~/your-project-directory
+    working_directory: ~/Desktop/Gym-Website
 
     steps:
       - checkout
