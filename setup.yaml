@@ -1,0 +1,87 @@
+---
+- name: Setup Java environment with Maven
+  hosts: your_host_group
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+      become: yes
+
+    - name: Install OpenJDK 8
+      apt:
+        name: openjdk-8-jdk
+        state: present
+      become: yes
+
+    - name: Set Java 8 as default
+      command: update-java-alternatives --set java-1.8.0-openjdk-amd64
+      become: yes
+
+    - name: Install Maven
+      apt:
+        name: maven
+        state: present
+      become: yes
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+      become: yes
+
+    - name: Install curl
+      apt:
+        name: curl
+        state: present
+      become: yes
+
+    - name: Install unzip
+      apt:
+        name: unzip
+        state: present
+      become: yes
+
+    - name: Install wget
+      apt:
+        name: wget
+        state: present
+      become: yes
+
+    - name: Install vim
+      apt:
+        name: vim
+        state: present
+      become: yes
+
+    - name: Install tree
+      apt:
+        name: tree
+        state: present
+      become: yes
+
+    - name: Install jq
+      apt:
+        name: jq
+        state: present
+      become: yes
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+      become: yes
+
+    - name: Add user to Docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+      become: yes
+
+    - name: Ensure Docker service is started
+      service:
+        name: docker
+        state: started
+      become: yes
